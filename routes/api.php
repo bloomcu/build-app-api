@@ -9,21 +9,65 @@ use DDD\Http\Auth\AuthMeController;
 use DDD\Http\Auth\AuthRegisterController;
 use DDD\Http\Auth\AuthRegisterWithInvitationController;
 use DDD\Http\Categories\CategoryController;
+use DDD\Http\Crawls\CrawlController;
+use DDD\Http\Crawls\CrawlResultsController;
+use DDD\Http\Crawls\CrawlResultsImportController;
+use DDD\Http\Designs\DesignController;
+use DDD\Http\Designs\DesignMediaController;
+use DDD\Http\Designs\DesignDuplicationController;
 use DDD\Http\Invitations\InvitationController;
 use DDD\Http\Media\MediaController;
 use DDD\Http\Media\MediaDownloadController;
 use DDD\Http\Organizations\OrganizationController;
 use DDD\Http\Organizations\OrganizationCommentController;
+use DDD\Http\Pages\PageController;
+use DDD\Http\Pages\PageExportToCSVController;
+// use DDD\Http\Pages\PageTagController;
+use DDD\Http\Redirects\RedirectController;
 use DDD\Http\Sites\SiteController;
 use DDD\Http\Statuses\StatusController;
 use DDD\Http\Tags\TagController;
 use DDD\Http\Teams\TeamController;
 use DDD\Http\Users\UserController;
 
+// TODO: Alphabetize routes
+
+// Test - Soketi event
+// use DDD\App\Events\Test;
+// Route::get('broadcast', function() {
+//     Test::dispatch('test');
+// });
+//
+// use DDD\Domain\Crawls\Events\CrawlStatusUpdatedEvent;
+// use DDD\Domain\Crawls\Crawl;
+// Route::get('broadcast/private', function() {
+//     CrawlStatusUpdatedEvent::dispatch(Crawl::find(1));
+// });
+
 // Public - Auth
 Route::post('auth/login', AuthLoginController::class);
 Route::post('auth/register', AuthRegisterController::class);
 Route::post('auth/register/invitation/{invitation:uuid}', AuthRegisterWithInvitationController::class);
+
+// Public - Designs
+Route::prefix('{organization:slug}')->group(function() {
+    Route::get('/designs', [DesignController::class, 'index']);
+    Route::post('/designs', [DesignController::class, 'store']);
+    Route::get('/designs/{design:uuid}', [DesignController::class, 'show']);
+    Route::put('designs/{design:uuid}', [DesignController::class, 'update']);
+    Route::delete('/designs/{design:uuid}', [DesignController::class, 'destroy']);
+    Route::delete('/designs/{design:uuid}', [DesignController::class, 'destroy']);
+
+    // Public - Duplicate design
+    Route::prefix('/designs/{design:uuid}')->group(function() {
+        Route::post('/duplicate', [DesignDuplicationController::class, 'duplicate']);
+    });
+
+    // Public - Design media
+    Route::prefix('/designs/{design:uuid}')->group(function() {
+        Route::post('/media', [DesignMediaController::class, 'store']);
+    });
+});
 
 // Public - Invitations
 Route::get('{organization:slug}/invitations/{invitation:uuid}', [InvitationController::class, 'show']);
@@ -42,6 +86,11 @@ Route::prefix('/{organization:slug}')->group(function() {
 // Public - Media Download
 Route::get('/media/{media:uuid}', [MediaDownloadController::class, 'download']);
 
+// Public - Pages export to CSV
+Route::prefix('{organization:slug}/pages/export')->group(function() {
+    Route::get('/csv', [PageExportToCSVController::class, 'export']);
+});
+
 Route::middleware('auth:sanctum')->group(function() {
     // Auth
     Route::post('auth/logout', AuthLogoutController::class);
@@ -54,6 +103,24 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::get('/{category:slug}', [CategoryController::class, 'show']);
         Route::put('/{category:slug}', [CategoryController::class, 'update']);
         Route::delete('/{category:slug}', [CategoryController::class, 'destroy']);
+    });
+
+    // Crawls
+    Route::prefix('{organization:slug}/crawls')->group(function() {
+        Route::get('/', [CrawlController::class, 'index']);
+        Route::post('/', [CrawlController::class, 'store']);
+        Route::get('/{crawl}', [CrawlController::class, 'show']);
+        Route::delete('/{crawl}', [CrawlController::class, 'destroy']);
+
+        // Crawl results
+        Route::prefix('/{crawl}')->group(function() {
+            Route::get('/results', [CrawlResultsController::class, 'show']);
+        });
+
+        // Crawl results import
+        Route::prefix('/{crawl}')->group(function() {
+            Route::get('/import', [CrawlResultsImportController::class, 'import']);
+        });
     });
 
     // Invitations
@@ -80,6 +147,29 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::prefix('/organizations/{organization:slug}')->group(function() {
         Route::post('/comments', [OrganizationCommentController::class, 'store']);
         Route::delete('comments/{comment}', [OrganizationCommentController::class, 'destroy']);
+    });
+
+    // Pages
+    Route::prefix('{organization:slug}/pages')->group(function() {
+        Route::get('/', [PageController::class, 'index']);
+        Route::post('/', [PageController::class, 'store']);
+        Route::get('/{page}', [PageController::class, 'show']);
+        Route::put('/', [PageController::class, 'update']);
+        Route::post('/destroy', [PageController::class, 'destroy']);
+
+        // Tagging
+        // route::post('/pages/{page}/tag', [PageTagController::class, 'tag']);
+        // route::post('/pages/{page}/untag', [PageTagController::class, 'untag']);
+        // route::post('/pages/{page}/retag', [PageTagController::class, 'retag']);
+    });
+
+    // Redirects
+    Route::prefix('{organization:slug}/redirects')->group(function() {
+        Route::get('/', [RedirectController::class, 'index']);
+        Route::post('/', [RedirectController::class, 'store']);
+        Route::get('/{redirect}', [RedirectController::class, 'show']);
+        Route::put('/{redirect}', [RedirectController::class, 'update']);
+        Route::delete('/{redirect}', [RedirectController::class, 'destroy']);
     });
 
     // Sites
