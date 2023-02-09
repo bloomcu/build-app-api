@@ -5,9 +5,9 @@ namespace DDD\Domain\Pages\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 // Resources
-use DDD\Domain\Statuses\Resources\StatusResource;
-use DDD\Domain\Categories\Resources\CategoryResource;
-use DDD\Domain\Users\Resources\UserResource;
+use DDD\Domain\Base\Statuses\Resources\StatusResource;
+use DDD\Domain\Base\Categories\Resources\CategoryResource;
+use DDD\Domain\Base\Users\Resources\UserResource;
 
 class PageResource extends JsonResource
 {

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 // Domains
-use DDD\Domain\Sites\Site;
+use DDD\Domain\Base\Sites\Site;
 
 // Traits
 use DDD\App\Traits\BelongsToOrganization;
