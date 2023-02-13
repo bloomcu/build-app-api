@@ -3,25 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Base routes
-use DDD\Http\Base\Auth\AuthLoginController;
-use DDD\Http\Base\Auth\AuthLogoutController;
-use DDD\Http\Base\Auth\AuthMeController;
-use DDD\Http\Base\Auth\AuthRegisterController;
-use DDD\Http\Base\Auth\AuthRegisterWithInvitationController;
-use DDD\Http\Base\Categories\CategoryController;
-use DDD\Http\Base\Invitations\InvitationController;
-use DDD\Http\Base\Media\MediaController;
-use DDD\Http\Base\Media\MediaDownloadController;
-use DDD\Http\Base\Organizations\OrganizationController;
-use DDD\Http\Base\Organizations\OrganizationCommentController;
-use DDD\Http\Base\Sites\SiteController;
-use DDD\Http\Base\Statuses\StatusController;
-use DDD\Http\Base\Tags\TagController;
-use DDD\Http\Base\Teams\TeamController;
-use DDD\Http\Base\Users\UserController;
-
-// Build app routes
 use DDD\Http\Crawls\CrawlController;
 use DDD\Http\Crawls\CrawlResultsController;
 use DDD\Http\Crawls\CrawlResultsImportController;
@@ -30,6 +11,7 @@ use DDD\Http\Designs\DesignMediaController;
 use DDD\Http\Designs\DesignDuplicationController;
 use DDD\Http\Pages\PageController;
 use DDD\Http\Pages\PageExportToCSVController;
+use DDD\Http\Pages\PageNestingController;
 
 // Public - Designs
 Route::prefix('{organization:slug}')->group(function() {
@@ -82,6 +64,10 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::get('/{page}', [PageController::class, 'show']);
         Route::put('/', [PageController::class, 'update']);
         Route::post('/destroy', [PageController::class, 'destroy']);
+        Route::post('/restore', [PageController::class, 'restore']);
+
+        // Parent
+        Route::put('/{page}/nesting', [PageNestingController::class, 'update']);
 
         // Tagging
         // route::post('/pages/{page}/tag', [PageTagController::class, 'tag']);
