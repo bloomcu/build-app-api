@@ -39,6 +39,7 @@ class PageResource extends JsonResource
             // 'children' => PageResource::collection($this->whenLoaded('descendants')),
 
             'created_at' => $this->created_at,
+            'deleted_at' => $this->deleted_at,
         ];;
     }
 }

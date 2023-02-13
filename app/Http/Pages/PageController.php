@@ -68,10 +68,23 @@ class PageController extends Controller
 
     public function destroy(Organization $organization, Request $request)
     {
-        Page::whereIn('id', $request->ids)->delete();
+        $pages = Page::whereIn('id', $request->ids);
+
+        $pages->update(['parent_id' => null]);
+
+        $pages->delete();
 
         return response()->json([
             'message' => 'Pages successfully deleted.',
+        ], 200);
+    }
+
+    public function restore(Organization $organization, Request $request)
+    {
+        Page::whereIn('id', $request->ids)->restore();
+
+        return response()->json([
+            'message' => 'Pages successfully restored.',
         ], 200);
     }
 }
