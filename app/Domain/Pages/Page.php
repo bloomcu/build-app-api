@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 // Domains
-use DDD\Domain\Sites\Site;
+use DDD\Domain\Base\Sites\Site;
 
 // Traits
 use DDD\App\Traits\BelongsToOrganization;
 use DDD\App\Traits\BelongsToUser;
+use DDD\App\Traits\HasParents;
 use DDD\App\Traits\IsCategorizable;
 use DDD\App\Traits\IsStatusable;
 use DDD\App\Traits\IsTaggable;
@@ -22,6 +23,7 @@ class Page extends Model
         SoftDeletes,
         BelongsToOrganization,
         BelongsToUser,
+        HasParents,
         IsCategorizable,
         IsStatusable,
         IsTaggable;

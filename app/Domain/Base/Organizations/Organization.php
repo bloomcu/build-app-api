@@ -5,7 +5,12 @@ namespace DDD\Domain\Base\Organizations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+// Domains
+use DDD\Domain\Base\Subscriptions\Plans\Plan;
+
 // Vendors
+use Laravel\Cashier\Billable;
+use Laravel\Cashier\Subscription;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -16,6 +21,7 @@ use DDD\App\Traits\HasSlug;
 class Organization extends Model implements HasMedia
 {
     use HasFactory,
+        Billable,
         InteractsWithMedia,
         HasComments,
         HasSlug;
@@ -63,52 +69,27 @@ class Organization extends Model implements HasMedia
     }
 
     /**
-     * Crawls associated with the organization.
+     * Plan organization is subscribed to.
      *
-     * @return hasMany
+     * @return hasOneThrough
      */
-    public function crawls()
+    public function plan()
     {
-        return $this->hasMany('DDD\Domain\Crawls\Crawl');
+        return $this->hasOneThrough(
+            Plan::class, Subscription::class,
+            'organization_id', 'stripe_price_id', 'id', 'stripe_price'
+        )
+            ->whereNull('subscriptions.ends_at') // Not being cancelled
+            ->withDefault(Plan::free()->toArray());
     }
 
-    /**
-     * Last crawl associated with the organization.
-     *
-     * @return model
-     */
-    public function lastCrawl()
-    {
-        return $this->hasOne('DDD\Domain\Crawls\Crawl')->latest();
-    }
+    // public function userCount()
+    // {
+    //     return $this->users->count();
+    // }
 
-    /**
-     * Pages associated with the organization.
-     *
-     * @return hasMany
-     */
-    public function pages()
-    {
-        return $this->hasMany('DDD\Domain\Pages\Page');
-    }
-
-    /**
-     * Redirects associated with the organization.
-     *
-     * @return hasMany
-     */
-    public function redirects()
-    {
-        return $this->hasMany('DDD\Domain\Redirects\Redirect');
-    }
-
-    /**
-     * Designs associated with this organization.
-     *
-     * @return hasMany
-     */
-    public function designs()
-    {
-        return $this->hasMany('DDD\Domain\Designs\Design');
-    }
+    // public function canDowngradeToPlan(Plan $plan)
+    // {
+    //     return $this->userCount() <= $plan->limits['users'];
+    // }
 }

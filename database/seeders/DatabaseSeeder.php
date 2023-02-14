@@ -17,11 +17,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             // CategoriesSeeder::class,
+            SubscriptionPlansSeeder::class,
             OrganizationsSeeder::class,
-            UsersSeeder::class,
+            // UsersSeeder::class,
             SitesSeeder::class,
             DesignsSeeder::class,
-            PagesSeeder::class,
+            // PagesSeeder::class,
             TagsSeeder::class,
             StatusesSeeder::class,
         ]);
