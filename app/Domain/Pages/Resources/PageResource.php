@@ -21,6 +21,7 @@ class PageResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'order' => $this->order,
             'http_status' => $this->http_status,
             'title' => $this->title,
             'url' => $this->url,
@@ -34,7 +35,6 @@ class PageResource extends JsonResource
 
             // 'status' => $this->whenLoaded('status', fn() => $this->status->slug),
             // 'category' => $this->whenLoaded('category', fn() => $this->category->slug),
-
             'children' => PageResource::collection($this->children),
             // 'children' => PageResource::collection($this->whenLoaded('descendants')),
 
