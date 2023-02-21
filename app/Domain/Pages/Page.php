@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
+// Vendors
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
+
 // Domains
 use DDD\Domain\Base\Sites\Site;
 
@@ -26,10 +30,16 @@ class Page extends Model
         HasParents,
         IsCategorizable,
         IsStatusable,
-        IsTaggable;
+        IsTaggable,
+        SortableTrait;
 
     protected $guarded = [
         'id',
+    ];
+
+    public $sortable = [
+        'order_column_name' => 'order',
+        'sort_when_creating' => false,
     ];
 
     public function site()
