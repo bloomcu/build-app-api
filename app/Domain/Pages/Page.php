@@ -39,7 +39,7 @@ class Page extends Model
 
     public $sortable = [
         'order_column_name' => 'order',
-        'sort_when_creating' => false,
+        'sort_when_creating' => true,
     ];
 
     public function site()
