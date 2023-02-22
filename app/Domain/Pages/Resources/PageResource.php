@@ -21,21 +21,21 @@ class PageResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'order' => $this->order,
+            'parent_id' => $this->parent_id,
             'http_status' => $this->http_status,
             'title' => $this->title,
             'url' => $this->url,
             'wordcount' => $this->wordcount,
-
-            'status' => new StatusResource($this->status),
             'category' => new CategoryResource($this->category),
+            'status' => new StatusResource($this->status),
+            'order' => $this->order,
 
             // 'status' => new StatusResource($this->whenLoaded('status')),
             // 'category' => new CategoryResource($this->whenLoaded('category')),
 
             // 'status' => $this->whenLoaded('status', fn() => $this->status->slug),
             // 'category' => $this->whenLoaded('category', fn() => $this->category->slug),
-            'children' => PageResource::collection($this->children),
+            // 'children' => PageResource::collection($this->children),
             // 'children' => PageResource::collection($this->whenLoaded('descendants')),
 
             'created_at' => $this->created_at,
