@@ -143,4 +143,5 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::prefix('{organization:slug}')->group(function() {
         Route::get('users', [UserController::class, 'index']);
     });
+
 });
