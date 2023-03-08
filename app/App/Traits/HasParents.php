@@ -14,10 +14,10 @@ trait HasParents
      *
      * @return hasMany
      */
-    // public function children()
-    // {
-    //     return $this->hasMany(self::class, 'parent_id');
-    // }
+    public function children()
+    {
+        return $this->hasMany(self::class, 'parent_id')->orderBy('order');
+    }
 
     /**
      * Get only parents (top level models).
@@ -25,8 +25,8 @@ trait HasParents
      * @param Builder $query
      * @return Builder
      */
-    // public function scopeParents($query)
-    // {
-    //     return $query->whereNull('parent_id');
-    // }
+    public function scopeParents($query)
+    {
+        return $query->whereNull('parent_id');
+    }
 }

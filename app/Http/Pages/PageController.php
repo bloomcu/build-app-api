@@ -26,11 +26,13 @@ class PageController extends Controller
     {
         $pages = QueryBuilder::for(Page::class)
             ->where('organization_id', $organization->id)
+            ->defaultSort('order')
             ->allowedFilters([
                 AllowedFilter::trashed(),
                 'category.slug',
                 'status.slug',
             ])
+            ->parents()
             ->latest()
             ->get();
 
@@ -79,7 +81,9 @@ class PageController extends Controller
 
     public function restore(Organization $organization, Request $request)
     {
-        Page::whereIn('id', $request->ids)->restore();
+        $pages = Page::whereIn('id', $request->ids);
+
+        $pages->restore();
 
         return response()->json([
             'message' => 'Pages successfully restored.',
