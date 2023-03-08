@@ -16,7 +16,7 @@ trait HasParents
      */
     public function children()
     {
-        return $this->hasMany(self::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id')->orderBy('order');
     }
 
     /**
