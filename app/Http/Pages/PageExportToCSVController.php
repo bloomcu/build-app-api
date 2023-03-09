@@ -44,11 +44,11 @@ class PageExportToCSVController extends Controller
             fputcsv($file, $columns);
 
             foreach ($pages as $page) {
-                $row['Title'] = $page->formattedTitle;
-                $row['Parents'] = $page->parents;
-                $row['Url'] = $page->url;
-                $row['Category'] = $page->category ? $page->category->title : 'Uncategorized';
-                $row['Wordcount'] = $page->wordcount;
+                $row['Title'] = str_replace(chr(194), '', $page->formattedTitle);
+                $row['Parents'] = str_replace(chr(194), '', $page->parents);
+                $row['Url'] = str_replace(chr(194), '', $page->url);
+                $row['Category'] = str_replace(chr(194), '', $page->category ? $page->category->title : 'Uncategorized');
+                $row['Wordcount'] = str_replace(chr(194), '', $page->wordcount);
 
                 fputcsv($file, array(
                     $row['Title'],
