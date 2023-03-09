@@ -76,7 +76,7 @@ class PageExportToCSVController extends Controller
             $object->level = $level;
 
             // Setup formatted title
-            $object->formattedTitle = $object->level ? str_repeat('|-', $object->level) . ' ' . $object->title : $object->title;
+            $object->formattedTitle = $object->level ? str_repeat('-', $object->level) . ' ' . $object->title : $object->title;
 
             // Set parents
             if ($object->parent_id) {
