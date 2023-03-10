@@ -8,10 +8,10 @@ use DDD\App\Controllers\Controller;
 // Models
 use DDD\Domain\Organizations\Organization;
 use DDD\Domain\Designs\Design;
-use DDD\Domain\Designs\Media;
+use DDD\Domain\Base\Media\Media;
 
 // Resources
-use DDD\Domain\Media\Resources\MediaResource;
+use DDD\Domain\Base\Media\Resources\MediaResource;
 
 class DesignMediaController extends Controller
 {
