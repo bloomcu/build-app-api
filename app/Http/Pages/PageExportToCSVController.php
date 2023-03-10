@@ -44,11 +44,11 @@ class PageExportToCSVController extends Controller
             fputcsv($file, $columns);
 
             foreach ($pages as $page) {
-                $row['Title'] = $page->formattedTitle;
-                $row['Parents'] = $page->parents;
-                $row['Url'] = $page->url;
-                $row['Category'] = $page->category ? $page->category->title : 'Uncategorized';
-                $row['Wordcount'] = $page->wordcount;
+                $row['Title'] = str_replace(chr(194), '', $page->title);
+                $row['Parents'] = str_replace(chr(194), '', $page->parents);
+                $row['Url'] = str_replace(chr(194), '', $page->url);
+                $row['Category'] = str_replace(chr(194), '', $page->category ? $page->category->title : 'Uncategorized');
+                $row['Wordcount'] = str_replace(chr(194), '', $page->wordcount);
 
                 fputcsv($file, array(
                     $row['Title'],
@@ -104,38 +104,4 @@ class PageExportToCSVController extends Controller
         }
         return $output;
     }
-
-    // public function flatten($input, $key)
-    // {
-    //     // $level = 0;
-    //     $output = [];
-    //
-    //     // For each object in the array
-    //     foreach ($input as $object) {
-    //
-    //         // separate its children
-    //         // if (isset($object->$key)) {
-    //         //     $children = $object->$key;
-    //         // } else {
-    //         //     $children = [];
-    //         // }
-    //         // $object->$key = [];
-    //
-    //         // separate its children
-    //         $children = isset($object->$key) ? $object->$key : [];
-    //         $object->$key = [];
-    //
-    //         // and add it to the output array
-    //         $output[] = $object;
-    //
-    //         // Recursively flatten the array of children
-    //         $children = $this->flatten($children, $key);
-    //
-    //         //  and add the result to the output array
-    //         foreach ($children as $child) {
-    //             $output[] = $child;
-    //         }
-    //     }
-    //     return $output;
-    // }
 }
