@@ -25,9 +25,7 @@ class PageNestingController extends Controller
         ]);
 
         // Update order
-        $siblingIds = $page->siblings()->orderBy('order')->get()->pluck('id');
-        $siblingIds->splice($request->order, 0, $page->id);
-        Page::setNewORder($siblingIds);
+        $page->reorder($request->order);
 
         return response()->json([
             'message' => 'Page nesting successfully updated.',
