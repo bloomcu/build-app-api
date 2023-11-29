@@ -10,7 +10,7 @@ use DDD\Http\Designs\DesignController;
 use DDD\Http\Designs\DesignMediaController;
 use DDD\Http\Designs\DesignDuplicationController;
 use DDD\Http\Pages\PageController;
-use DDD\Http\Pages\PageExportFinetuningForJunkController;
+use DDD\Http\OpenAI\Finetuning\ExportFinetuningForJunkPagesController;
 use DDD\Http\Pages\PageExportToCSVController;
 use DDD\Http\Pages\PageNestingController;
 use DDD\Http\Redirects\RedirectController;
@@ -36,8 +36,8 @@ Route::prefix('{organization:slug}')->group(function() {
 });
 
 // Public - Pages export finetuning for junk
-Route::prefix('{organization:slug}/pages/export')->group(function() {
-    Route::get('/finetuning/junk', [PageExportFinetuningForJunkController::class, 'export']);
+Route::prefix('{organization:slug}/openai/finetuning/')->group(function() {
+    Route::get('/pages/junk', [ExportFinetuningForJunkPagesController::class, 'export']);
 });
 
 // Public - Pages export to CSV

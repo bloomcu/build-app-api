@@ -1,6 +1,6 @@
 <?php
 
-namespace DDD\Http\Pages;
+namespace DDD\Http\OpenAI\Finetuning;
 
 use Illuminate\Http\Request;
 use DDD\App\Controllers\Controller;
@@ -9,14 +9,10 @@ use DDD\App\Controllers\Controller;
 use DDD\Domain\Organizations\Organization;
 use DDD\Domain\Pages\Page;
 
-// Resources
-use DDD\Domain\Pages\Resources\PageResource;
-
-class PageExportFinetuningForJunkController extends Controller
+class ExportFinetuningForJunkPagesController extends Controller
 {
     public function export(Organization $organization, Request $request)
     {
-        // $pages = Page::latest()->take(100)->get();
         $pagesSets = [
             Page::where('junk_status', 'junk')->orderByRaw('RAND()')->take(100)->get(),
             Page::where('junk_status', 'keep')->orderByRaw('RAND()')->take(500)->get(),
