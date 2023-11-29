@@ -36,6 +36,7 @@ class PageUpdateRequest extends FormRequest
             'http_status' => 'nullable|integer',
             'wordcount' => 'nullable|integer',
             'category' => 'nullable|string',
+            'junk_status' => 'nullable|string',
         ];
     }
 

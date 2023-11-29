@@ -10,8 +10,10 @@ use DDD\Http\Designs\DesignController;
 use DDD\Http\Designs\DesignMediaController;
 use DDD\Http\Designs\DesignDuplicationController;
 use DDD\Http\Pages\PageController;
+use DDD\Http\Pages\PageExportFinetuningForJunkController;
 use DDD\Http\Pages\PageExportToCSVController;
 use DDD\Http\Pages\PageNestingController;
+use DDD\Http\Redirects\RedirectController;
 
 // Public - Designs
 Route::prefix('{organization:slug}')->group(function() {
@@ -31,6 +33,11 @@ Route::prefix('{organization:slug}')->group(function() {
     Route::prefix('/designs/{design:uuid}')->group(function() {
         Route::post('/media', [DesignMediaController::class, 'store']);
     });
+});
+
+// Public - Pages export finetuning for junk
+Route::prefix('{organization:slug}/pages/export')->group(function() {
+    Route::get('/finetuning/junk', [PageExportFinetuningForJunkController::class, 'export']);
 });
 
 // Public - Pages export to CSV

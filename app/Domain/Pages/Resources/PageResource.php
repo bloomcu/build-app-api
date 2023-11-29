@@ -30,6 +30,8 @@ class PageResource extends JsonResource
             'status' => new StatusResource($this->status),
             'order' => $this->order,
             'children' => PageResource::collection($this->children),
+            // 'children' => PageResource::collection($this->whenLoaded('children')),
+            'junk_status' => $this->junk_status,
             'created_at' => $this->created_at,
             'deleted_at' => $this->deleted_at,
         ];;
