@@ -8,6 +8,11 @@ use DDD\App\Controllers\Controller;
 // Models
 use DDD\Domain\Organizations\Organization;
 use DDD\Domain\Redirects\Redirect;
+use DDD\Domain\Crawls\Crawl;
+
+// Services
+use DDD\App\Services\Crawler\CrawlerInterface as Crawler;
+use DDD\App\Services\Url\UrlService;
 
 class RedirectImportController extends Controller
 {

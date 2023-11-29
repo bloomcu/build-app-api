@@ -11,7 +11,7 @@ use DDD\Domain\Crawls\Crawl;
 
 // Services
 use DDD\App\Services\Crawler\CrawlerInterface as Crawler;
-use DDD\App\Services\UrlService;
+use DDD\App\Services\Url\UrlService;
 
 class CrawlResultsImportController extends Controller
 {
@@ -19,17 +19,17 @@ class CrawlResultsImportController extends Controller
     {
         $results = $crawler->getResults($crawl->results_id);
 
-        // Import clean, unique items as pages
+        // Import pages
         foreach ($results as $result) {
-            $cleanDestinationUrl = UrlService::getClean($result['destination_url']);
+            $cleanUrl = UrlService::getClean($result['url']);
 
             $organization->pages()->updateOrCreate(
-                ['url' => $cleanDestinationUrl],
+                ['url' => $cleanUrl],
                 [
                     'http_status'   => $result['http_status'],
                     'title'         => $result['title'],
                     'wordcount'     => $result['wordcount'],
-                    'url'           => $cleanDestinationUrl,
+                    'url'           => $cleanUrl,
                 ]
             );
         }
@@ -42,7 +42,7 @@ class CrawlResultsImportController extends Controller
                     [
                         'title'           => $result['title'],
                         'requested_url'   => $result['requested_url'],
-                        'destination_url' => $result['destination_url'],
+                        'destination_url' => $result['url'],
                         'group'           => 'Old Website'
                     ]
                 );
