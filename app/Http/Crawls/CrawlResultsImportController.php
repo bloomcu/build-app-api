@@ -2,55 +2,25 @@
 
 namespace DDD\Http\Crawls;
 
-use Illuminate\Http\Request;
-use DDD\App\Controllers\Controller;
-
-// Models
+use DDD\Domain\Redirects\Actions\ImportRedirects;
+use DDD\Domain\Pages\Actions\ImportPages;
 use DDD\Domain\Organizations\Organization;
 use DDD\Domain\Crawls\Crawl;
-
-// Services
 use DDD\App\Services\Crawler\CrawlerInterface as Crawler;
-use DDD\App\Services\Url\UrlService;
+use DDD\App\Controllers\Controller;
+
 
 class CrawlResultsImportController extends Controller
 {
     public function import(Organization $organization, Crawl $crawl, Crawler $crawler)
     {
-        $results = $crawler->getResults($crawl->results_id);
+        $crawlResults = $crawler->getResults($crawl->results_id);
 
-        // Import pages
-        foreach ($results as $result) {
-            $cleanUrl = UrlService::getClean($result['url']);
-
-            $organization->pages()->updateOrCreate(
-                ['url' => $cleanUrl],
-                [
-                    'http_status'   => $result['http_status'],
-                    'title'         => $result['title'],
-                    'wordcount'     => $result['wordcount'],
-                    'url'           => $cleanUrl,
-                ]
-            );
-        }
-
-        // Import redirects
-        foreach ($results as $result) {
-            if ($result['redirected']) {
-                $organization->redirects()->updateOrCreate(
-                    ['requested_url' => $result['requested_url']],
-                    [
-                        'title'           => $result['title'],
-                        'requested_url'   => $result['requested_url'],
-                        'destination_url' => $result['url'],
-                        'group'           => 'Old Website'
-                    ]
-                );
-            }
-        }
+        ImportPages::run($organization, $crawlResults);
+        ImportRedirects::run($organization, $crawlResults);
 
         return response()->json([
-            'message' => 'Crawl results imported.',
+            'message' => 'Pages and redirects imported from crawl results.',
         ]);
     }
 }

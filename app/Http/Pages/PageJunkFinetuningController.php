@@ -1,15 +1,13 @@
 <?php
 
-namespace DDD\Http\OpenAI\Finetuning;
+namespace DDD\Http\Pages;
 
 use Illuminate\Http\Request;
+use DDD\Domain\Pages\Page;
+use DDD\Domain\Organizations\Organization;
 use DDD\App\Controllers\Controller;
 
-// Models
-use DDD\Domain\Organizations\Organization;
-use DDD\Domain\Pages\Page;
-
-class ExportFinetuningForJunkPagesController extends Controller
+class PageJunkFinetuningController extends Controller
 {
     public function export(Organization $organization, Request $request)
     {
@@ -23,7 +21,7 @@ class ExportFinetuningForJunkPagesController extends Controller
             $pages = $pages->merge($set);
         };
 
-        $fileName = 'finetuning-trash-' . now()->format('Y-m-d') . '.jsonl';
+        $fileName = 'finetuning-for-page-junk-status-' . now()->format('Y-m-d') . '.jsonl';
         
         $fileHeaders = array(
             "Content-type"        => "application/jsonl",

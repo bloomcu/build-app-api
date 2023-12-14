@@ -10,8 +10,9 @@ use DDD\Http\Designs\DesignController;
 use DDD\Http\Designs\DesignMediaController;
 use DDD\Http\Designs\DesignDuplicationController;
 use DDD\Http\Pages\PageController;
-use DDD\Http\OpenAI\Finetuning\ExportFinetuningForJunkPagesController;
 use DDD\Http\Pages\PageExportToCSVController;
+use DDD\Http\Pages\PageJunkFinetuningController;
+use DDD\Http\Pages\PageJunkPredictController;
 use DDD\Http\Pages\PageNestingController;
 use DDD\Http\Redirects\RedirectController;
 
@@ -37,7 +38,7 @@ Route::prefix('{organization:slug}')->group(function() {
 
 // Public - Pages export finetuning for junk
 Route::prefix('{organization:slug}/openai/finetuning/')->group(function() {
-    Route::get('/pages/junk', [ExportFinetuningForJunkPagesController::class, 'export']);
+    Route::get('/pages/junk', [PageJunkFinetuningController::class, 'export']);
 });
 
 // Public - Pages export to CSV
@@ -46,6 +47,9 @@ Route::prefix('{organization:slug}/pages/export')->group(function() {
 });
 
 Route::middleware('auth:sanctum')->group(function() {
+    // Ai
+    Route::get('{organization:slug}/ai/predict-page-junk-status/{page}', [PageJunkPredictController::class, 'predict']);
+
     // Crawls
     Route::prefix('{organization:slug}/crawls')->group(function() {
         Route::get('/', [CrawlController::class, 'index']);
