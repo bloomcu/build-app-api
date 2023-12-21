@@ -32,7 +32,7 @@ class GoogleAuthController extends Controller
         $googleCredentials = GoogleAuth::storeCredentials($request->code);
 
         return response()->json([
-            'service' => $googleCredentialsr
+            'service' => $googleCredentials
         ], 200);
     }
 }
