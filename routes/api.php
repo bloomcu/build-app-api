@@ -1,52 +1,36 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
-use DDD\Http\Crawls\CrawlController;
-use DDD\Http\Crawls\CrawlResultsController;
-use DDD\Http\Crawls\CrawlResultsImportController;
-use DDD\Http\Designs\DesignController;
+use DDD\Http\Redirects\RedirectController;
+use DDD\Http\Pages\PageNestingController;
+use DDD\Http\Pages\PageJunkPredictController;
+use DDD\Http\Pages\PageJunkFinetuningController;
+use DDD\Http\Pages\PageExportToCSVController;
+use DDD\Http\Pages\PageController;
+use DDD\Http\Google\GoogleAuthController;
+use DDD\Http\Google\GoogleAnalyticsAdminController;
 use DDD\Http\Designs\DesignMediaController;
 use DDD\Http\Designs\DesignDuplicationController;
-use DDD\Http\Pages\PageController;
-use DDD\Http\Pages\PageExportToCSVController;
-use DDD\Http\Pages\PageJunkFinetuningController;
-use DDD\Http\Pages\PageJunkPredictController;
-use DDD\Http\Pages\PageNestingController;
-use DDD\Http\Redirects\RedirectController;
-
-// Public - Designs
-Route::prefix('{organization:slug}')->group(function() {
-    Route::get('/designs', [DesignController::class, 'index']);
-    Route::post('/designs', [DesignController::class, 'store']);
-    Route::get('/designs/{design:uuid}', [DesignController::class, 'show']);
-    Route::put('designs/{design:uuid}', [DesignController::class, 'update']);
-    Route::delete('/designs/{design:uuid}', [DesignController::class, 'destroy']);
-    Route::delete('/designs/{design:uuid}', [DesignController::class, 'destroy']);
-
-    // Public - Duplicate design
-    Route::prefix('/designs/{design:uuid}')->group(function() {
-        Route::post('/duplicate', [DesignDuplicationController::class, 'duplicate']);
-    });
-
-    // Public - Design media
-    Route::prefix('/designs/{design:uuid}')->group(function() {
-        Route::post('/media', [DesignMediaController::class, 'store']);
-    });
-});
-
-// Public - Pages export finetuning for junk
-Route::prefix('{organization:slug}/openai/finetuning/')->group(function() {
-    Route::get('/pages/junk', [PageJunkFinetuningController::class, 'export']);
-});
-
-// Public - Pages export to CSV
-Route::prefix('{organization:slug}/pages/export')->group(function() {
-    Route::get('/csv', [PageExportToCSVController::class, 'export']);
-});
+use DDD\Http\Designs\DesignController;
+use DDD\Http\Crawls\CrawlResultsImportController;
+use DDD\Http\Crawls\CrawlResultsController;
+use DDD\Http\Crawls\CrawlController;
 
 Route::middleware('auth:sanctum')->group(function() {
+    // Google Auth
+    // Route::prefix('google/auth')->group(function() {
+    Route::prefix('google')->group(function() {
+        Route::post('connect', [GoogleAuthController::class, 'connect'])->name('google.auth.connect');
+        Route::post('callback', [GoogleAuthController::class, 'callback'])->name('google.auth.callback');
+    });
+
+    // Google Analytics
+    Route::prefix('google/analytics')->group(function() {
+        Route::get('/accounts', [GoogleAnalyticsAdminController::class, 'listAccounts'])->name('google.analytics.accounts');
+    });
+
     // Ai
     Route::get('{organization:slug}/ai/predict-page-junk-status/{page}', [PageJunkPredictController::class, 'predict']);
 
@@ -94,4 +78,34 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::put('/{redirect}', [RedirectController::class, 'update']);
         Route::delete('/{redirect}', [RedirectController::class, 'destroy']);
     });
+});
+
+// Public - Designs
+Route::prefix('{organization:slug}')->group(function() {
+    Route::get('/designs', [DesignController::class, 'index']);
+    Route::post('/designs', [DesignController::class, 'store']);
+    Route::get('/designs/{design:uuid}', [DesignController::class, 'show']);
+    Route::put('designs/{design:uuid}', [DesignController::class, 'update']);
+    Route::delete('/designs/{design:uuid}', [DesignController::class, 'destroy']);
+    Route::delete('/designs/{design:uuid}', [DesignController::class, 'destroy']);
+
+    // Public - Duplicate design
+    Route::prefix('/designs/{design:uuid}')->group(function() {
+        Route::post('/duplicate', [DesignDuplicationController::class, 'duplicate']);
+    });
+
+    // Public - Design media
+    Route::prefix('/designs/{design:uuid}')->group(function() {
+        Route::post('/media', [DesignMediaController::class, 'store']);
+    });
+});
+
+// Public - Pages export finetuning for junk
+Route::prefix('{organization:slug}/openai/finetuning/')->group(function() {
+    Route::get('/pages/junk', [PageJunkFinetuningController::class, 'export']);
+});
+
+// Public - Pages export to CSV
+Route::prefix('{organization:slug}/pages/export')->group(function() {
+    Route::get('/csv', [PageExportToCSVController::class, 'export']);
 });
