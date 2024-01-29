@@ -3,11 +3,10 @@
 namespace DDD\Domain\Pages\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
-// Resources
+use DDD\Domain\Pages\Resources\PageTypeResource;
+use DDD\Domain\Pages\Resources\PageJunkStatusResource;
 use DDD\Domain\Base\Statuses\Resources\StatusResource;
 use DDD\Domain\Base\Categories\Resources\CategoryResource;
-use DDD\Domain\Base\Users\Resources\UserResource;
 
 class PageResource extends JsonResource
 {
@@ -29,9 +28,10 @@ class PageResource extends JsonResource
             'category' => new CategoryResource($this->category),
             'status' => new StatusResource($this->status),
             'order' => $this->order,
-            'children' => PageResource::collection($this->children),
-            // 'children' => PageResource::collection($this->whenLoaded('children')),
-            'junk_status' => $this->junk_status,
+            // 'children' => PageResource::collection($this->children),
+            'children' => PageResource::collection($this->whenLoaded('children')),
+            'type' => new PageTypeResource($this->type),
+            'junk_status' => new PageJunkStatusResource($this->junkStatus),
             'created_at' => $this->created_at,
             'deleted_at' => $this->deleted_at,
         ];;
