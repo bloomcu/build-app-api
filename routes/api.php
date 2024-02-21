@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
+use DDD\Http\Sites\SiteController;
 use DDD\Http\Redirects\RedirectController;
 use DDD\Http\Pages\PageNestingController;
 use DDD\Http\Pages\PageJunkPredictController;
@@ -33,6 +34,15 @@ Route::middleware('auth:sanctum')->group(function() {
 
     // Ai
     Route::get('{organization:slug}/ai/predict-page-junk-status/{page}', [PageJunkPredictController::class, 'predict']);
+
+    // Sites
+    Route::prefix('{organization:slug}/sites')->group(function() {
+        Route::get('/', [SiteController::class, 'index']);
+        Route::post('/', [SiteController::class, 'store']);
+        Route::get('/{site}', [SiteController::class, 'show']);
+        Route::put('/{site}', [SiteController::class, 'update']);
+        Route::delete('/{site}', [SiteController::class, 'destroy']);
+    });
 
     // Crawls
     Route::prefix('{organization:slug}/crawls')->group(function() {

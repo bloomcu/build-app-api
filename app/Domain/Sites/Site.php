@@ -1,12 +1,12 @@
 <?php
 
-namespace DDD\Domain\Base\Sites;
+namespace DDD\Domain\Sites;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 // Casts
-use DDD\Domain\Base\Sites\Casts\LaunchInfo;
+use DDD\Domain\Sites\Casts\LaunchInfo;
 
 // Traits
 use DDD\App\Traits\BelongsToOrganization;
