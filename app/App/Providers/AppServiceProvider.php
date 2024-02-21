@@ -2,32 +2,26 @@
 
 namespace DDD\App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
-// Vendors
-use Laravel\Cashier\Cashier;
-
-// Domains
 use DDD\Domain\Base\Organizations\Organization;
+// Vendors
+use Illuminate\Support\ServiceProvider;
+// Domains
+use Laravel\Cashier\Cashier;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Cashier::useCustomerModel(Organization::class);
     }

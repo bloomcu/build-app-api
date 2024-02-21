@@ -2,9 +2,7 @@
 
 namespace DDD\Http\Sites;
 
-use Illuminate\Http\Request;
 use DDD\App\Controllers\Controller;
-
 // Models
 use DDD\Domain\Organizations\Organization;
 use DDD\Domain\Sites\Site;
