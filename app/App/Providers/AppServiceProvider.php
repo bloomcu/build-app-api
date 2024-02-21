@@ -8,12 +8,6 @@ use Illuminate\Support\ServiceProvider;
 // Domains
 use Laravel\Cashier\Cashier;
 
-// Interfaces
-// use DDD\App\Services\CDN\CDNInterface;
-
-// Services
-// use DDD\App\Services\CDN\DigitalOceanCDNService;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -29,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // $this->app->bind(CDNInterface::class, DigitalOceanCDNService::class);
         Cashier::useCustomerModel(Organization::class);
     }
 }

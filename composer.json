@@ -12,6 +12,9 @@
         "aws/aws-sdk-php": "^3.225",
         "cloudinary-labs/cloudinary-laravel": "^2.0",
         "doctrine/dbal": "^3.5",
+        "google/analytics-admin": "^0.18.1",
+        "google/analytics-data": "^0.11.2",
+        "google/apiclient": "^2.15.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/cashier": "^14.7",
         "laravel/framework": "^10.45",
@@ -19,6 +22,7 @@
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "^3.0",
         "lorisleiva/laravel-actions": "^2.7",
+        "openai-php/laravel": "^0.8.1",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-medialibrary": "^10.7",
         "spatie/laravel-query-builder": "^5.1",
@@ -31,6 +35,7 @@
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
+        "pestphp/pest": "^1.23",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^2.0"
     },
@@ -69,7 +74,11 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "pestphp/pest-plugin": true
+        }
     },
     "minimum-stability": "stable",
     "prefer-stable": true

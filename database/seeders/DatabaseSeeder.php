@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
             // CategoriesSeeder::class,
             SubscriptionPlansSeeder::class,
             OrganizationsSeeder::class,
+            // UsersSeeder::class,
             SitesSeeder::class,
+            DesignsSeeder::class,
+            // PagesSeeder::class,
             TagsSeeder::class,
             StatusesSeeder::class,
         ]);
