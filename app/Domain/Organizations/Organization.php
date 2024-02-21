@@ -37,6 +37,16 @@ class Organization extends BaseOrganization {
     }
 
     /**
+     * Sites associated with this organization.
+     *
+     * @return hasMany
+     */
+    public function sites()
+    {
+        return $this->hasMany('DDD\Domain\Sites\Site');
+    }
+
+    /**
      * Pages associated with the organization.
      *
      * @return hasMany

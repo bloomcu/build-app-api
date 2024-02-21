@@ -29,7 +29,8 @@ class PageController extends Controller
             ->defaultSort('order')
             ->allowedFilters([
                 AllowedFilter::trashed(),
-                'category.slug',
+                'type.slug',
+                'junkStatus.slug',
                 'status.slug',
             ])
             ->parents()
@@ -45,7 +46,8 @@ class PageController extends Controller
             $request->validated()
         );
 
-        return new PageResource($page->load(['status', 'category', 'user']));
+        // return new PageResource($page->load(['status', 'category', 'user']));
+        return new PageResource($page);
     }
 
     public function show(Organization $organization, Page $page)
