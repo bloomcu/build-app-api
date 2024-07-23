@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('crawls', function (Blueprint $table) {
             // Drop foreign constraints
-            $table->dropForeign('crawls_site_id_foreign');
+            $table-> ('crawls_site_id_foreign');
 
             // Drop columns
             $table->dropColumn('site_id');
