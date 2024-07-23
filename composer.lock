@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8237d10ae4038561384d128f63e4ff05",
+    "content-hash": "504ad4c56567ffd5af6a686bc8c27439",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.316.5",
+            "version": "3.316.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "1d89a733ff593e9dd18ae2bcc63ea9fe7518bd59"
+                "reference": "230094aae21026df7b0c223dbdbcc09f952f0395"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/1d89a733ff593e9dd18ae2bcc63ea9fe7518bd59",
-                "reference": "1d89a733ff593e9dd18ae2bcc63ea9fe7518bd59",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/230094aae21026df7b0c223dbdbcc09f952f0395",
+                "reference": "230094aae21026df7b0c223dbdbcc09f952f0395",
                 "shasum": ""
             },
             "require": {
@@ -151,9 +151,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.316.5"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.316.6"
             },
-            "time": "2024-07-22T18:06:32+00:00"
+            "time": "2024-07-23T18:11:01+00:00"
         },
         {
             "name": "brick/math",
@@ -12111,7 +12111,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1"
+        "php": "^8.2"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
