@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use DDD\Domain\Pages\PageType;
 use DDD\Domain\Pages\PageJunkStatus;
-use DDD\Domain\Base\Sites\Site;
+use DDD\Domain\Sites\Site;
 use DDD\App\Traits\IsTaggable;
 use DDD\App\Traits\IsStatusable;
 use DDD\App\Traits\IsSortable;

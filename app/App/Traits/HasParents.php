@@ -3,8 +3,9 @@
 namespace DDD\App\Traits;
 
 // Vendors
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 trait HasParents
 {
@@ -21,7 +22,7 @@ trait HasParents
     /**
      * Get only parents (top level models).
      */
-    public function scopeParents(Builder $query): Builder
+    public function scopeParents($query)
     {
         return $query->whereNull('parent_id');
     }

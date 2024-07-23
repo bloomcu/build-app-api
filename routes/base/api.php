@@ -1,28 +1,29 @@
 <?php
 
-use DDD\Http\Base\Auth\AuthLoginController;
-use DDD\Http\Base\Auth\AuthLogoutController;
-use DDD\Http\Base\Auth\AuthMeController;
-use DDD\Http\Base\Auth\AuthPasswordForgotController;
-use DDD\Http\Base\Auth\AuthPasswordResetController;
-use DDD\Http\Base\Auth\AuthRegisterController;
-use DDD\Http\Base\Auth\AuthRegisterWithInvitationController;
-use DDD\Http\Base\Categories\CategoryController;
-use DDD\Http\Base\Files\FileController;
-use DDD\Http\Base\Files\FileDownloadController;
-use DDD\Http\Base\Invitations\InvitationController;
-use DDD\Http\Base\Media\MediaController;
-use DDD\Http\Base\Media\MediaDownloadController;
-use DDD\Http\Base\Organizations\OrganizationCommentController;
-use DDD\Http\Base\Statuses\StatusController;
-use DDD\Http\Base\Subscriptions\Intent\IntentController;
-use DDD\Http\Base\Subscriptions\Plans\PlanController;
-use DDD\Http\Base\Subscriptions\Plans\PlanSwapAvailabilityController;
-use DDD\Http\Base\Subscriptions\Subscriptions\SubscriptionController;
-use DDD\Http\Base\Tags\TagController;
-use DDD\Http\Base\Teams\TeamController;
-use DDD\Http\Base\Users\UserController;
 use Illuminate\Support\Facades\Route;
+use DDD\Http\Base\Users\UserController;
+use DDD\Http\Base\Teams\TeamController;
+use DDD\Http\Base\Tags\TagController;
+use DDD\Http\Base\Subscriptions\Subscriptions\SubscriptionController;
+use DDD\Http\Base\Subscriptions\Plans\PlanSwapAvailabilityController;
+use DDD\Http\Base\Subscriptions\Plans\PlanController;
+use DDD\Http\Base\Subscriptions\Intent\IntentController;
+use DDD\Http\Base\Statuses\StatusController;
+use DDD\Http\Base\Organizations\OrganizationController;
+use DDD\Http\Base\Organizations\OrganizationCommentController;
+use DDD\Http\Base\Media\MediaDownloadController;
+use DDD\Http\Base\Media\MediaController;
+use DDD\Http\Base\Invitations\InvitationController;
+use DDD\Http\Base\Files\FileDownloadController;
+use DDD\Http\Base\Files\FileController;
+use DDD\Http\Base\Categories\CategoryController;
+use DDD\Http\Base\Auth\AuthRegisterWithInvitationController;
+use DDD\Http\Base\Auth\AuthRegisterController;
+use DDD\Http\Base\Auth\AuthPasswordResetController;
+use DDD\Http\Base\Auth\AuthPasswordForgotController;
+use DDD\Http\Base\Auth\AuthMeController;
+use DDD\Http\Base\Auth\AuthLogoutController;
+use DDD\Http\Base\Auth\AuthLoginController;
 
 // Public - Auth
 Route::post('auth/login', AuthLoginController::class);
