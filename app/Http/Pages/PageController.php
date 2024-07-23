@@ -34,6 +34,7 @@ class PageController extends Controller
                 'status.slug',
             ])
             ->parents()
+            ->with('children')
             ->latest()
             ->get();
 

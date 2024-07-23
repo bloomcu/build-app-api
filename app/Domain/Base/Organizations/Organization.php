@@ -2,27 +2,23 @@
 
 namespace DDD\Domain\Base\Organizations;
 
-use DDD\App\Traits\HasComments;
-use DDD\App\Traits\HasSlug;
-use DDD\Domain\Base\Subscriptions\Plans\Plan;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-// Domains
-use Illuminate\Database\Eloquent\Model;
-// Vendors
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
-// use Spatie\MediaLibrary\HasMedia;
-// use Spatie\MediaLibrary\InteractsWithMedia;
-
-// Traits
-use Laravel\Cashier\Billable;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\HasMedia;
 use Laravel\Cashier\Subscription;
+use Laravel\Cashier\Billable;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use DDD\Domain\Base\Subscriptions\Plans\Plan;
+use DDD\App\Traits\HasSlug;
+use DDD\App\Traits\HasComments;
 
-class Organization extends Model
+class Organization extends Model implements HasMedia
 {
     use Billable,
         HasComments,
-        // InteractsWithMedia,
+        InteractsWithMedia,
         HasFactory,
         HasSlug;
 
