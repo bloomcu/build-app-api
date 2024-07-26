@@ -4,9 +4,9 @@ namespace DDD\Domain\Sites;
 
 // Traits
 use DDD\App\Traits\BelongsToOrganization;
-// Casts
 
-use DDD\Domain\Base\Sites\Casts\LaunchInfo;
+// Casts
+use DDD\Domain\Sites\Casts\LaunchInfo;
 
 // Database
 use Illuminate\Database\Eloquent\Factories\HasFactory;
