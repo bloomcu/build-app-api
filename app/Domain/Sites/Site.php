@@ -2,18 +2,16 @@
 
 namespace DDD\Domain\Sites;
 
-use DDD\App\Traits\BelongsToOrganization;
-use DDD\Domain\Base\Sites\Casts\LaunchInfo;
-// Casts
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 // Traits
+use DDD\App\Traits\BelongsToOrganization;
+// Casts
+
+use DDD\Domain\Base\Sites\Casts\LaunchInfo;
+
+// Database
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// Casts
-use DDD\Domain\Sites\Casts\LaunchInfo;
-
-// Traits
-use DDD\App\Traits\BelongsToOrganization;
 
 class Site extends Model
 {
