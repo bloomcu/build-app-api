@@ -17,8 +17,8 @@ class CrawlerApify implements CrawlerInterface
     public function crawlSite(string $url)
     {
         try {
-            // $response = Http::post('https://api.apify.com/v2/actor-tasks/' . $this->cheerioActor . '/runs?token=' . $this->token, [
-            $request = Http::post('https://api.apify.com/v2/acts/' . $this->cheerioActor . '/runs?token=' . $this->token, [
+            $response = Http::post('https://api.apify.com/v2/actor-tasks/' . $this->cheerioActor . '/runs?token=' . $this->token, [
+            // $request = Http::post('https://api.apify.com/v2/acts/' . $this->cheerioActor . '/runs?token=' . $this->token, [
                 'startUrls' => [['url' => $url . '/']],
                 'pseudoUrls' => [['purl' => $url . '/[.*?]']]
             ])->json();
