@@ -31,7 +31,7 @@ class CrawlerApify implements CrawlerInterface
                 'results_id' => $response['defaultDatasetId'],
             ];
         } catch (\Exception $exception) {
-            abort(500, 'Could not start Apify crawler.');
+            abort(500, 'Could not start Apify crawler: ' . $exception->getMessage());
         }
     }
 
@@ -49,7 +49,7 @@ class CrawlerApify implements CrawlerInterface
             ];
         // } catch (RequestException $exception) {
         } catch (\Exception $exception) {
-            abort(500, 'Could not retrieve status from Apify crawler.');
+            abort(500, 'Could not retrieve status from Apify crawler: ' . $exception->getMessage());
         }
     }
 
@@ -79,7 +79,7 @@ class CrawlerApify implements CrawlerInterface
             return $mapped;
         // } catch (RequestException $exception) {
         } catch (\Exception $exception) {
-            abort(500, 'Could not get Apify crawl results.');
+            abort(500, 'Could not get Apify crawl results: ' . $exception->getMessage());
         }
     }
 
@@ -90,7 +90,7 @@ class CrawlerApify implements CrawlerInterface
             return $request;
         // } catch (RequestException $exception) {
         } catch (\Exception $exception) {
-            abort(500, 'Could not abort Apify crawler.');
+            abort(500, 'Could not abort Apify crawler: ' . $exception->getMessage());
         }
     }
 }
