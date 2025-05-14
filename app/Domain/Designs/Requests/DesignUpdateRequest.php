@@ -67,8 +67,48 @@ class DesignUpdateRequest extends FormRequest
             'variables.btn_primary_text_color' => 'nullable|string',
             'variables.btn_secondary_text_color' => 'nullable|string',
             'variables.btn_tertiary_text_color' => 'nullable|string',
+            
+            // Buttons BG colors
+            'variables.btn_primary_bg_color' => 'nullable|string',
+            'variables.btn_secondary_bg_color' => 'nullable|string',
+            'variables.btn_tertiary_bg_color' => 'nullable|string',
+            
+            // Buttons border styles
+            'variables.btn_primary_border_top_width' => 'nullable|numeric',
+            'variables.btn_primary_border_right_width' => 'nullable|numeric',
+            'variables.btn_primary_border_bottom_width' => 'nullable|numeric',
+            'variables.btn_primary_border_left_width' => 'nullable|numeric',
+
+            'variables.btn_primary_border_top_color' => 'nullable|string',
+            'variables.btn_primary_border_right_color' => 'nullable|string',
+            'variables.btn_primary_border_bottom_color' => 'nullable|string',
+            'variables.btn_primary_border_left_color' => 'nullable|string',
+
+            'variables.btn_secondary_border_top_width' => 'nullable|numeric',
+            'variables.btn_secondary_border_right_width' => 'nullable|numeric',
+            'variables.btn_secondary_border_bottom_width' => 'nullable|numeric',
+            'variables.btn_secondary_border_left_width' => 'nullable|numeric',
+
+            'variables.btn_secondary_border_top_color' => 'nullable|string',
+            'variables.btn_secondary_border_right_color' => 'nullable|string',
+            'variables.btn_secondary_border_bottom_color' => 'nullable|string',
+            'variables.btn_secondary_border_left_color' => 'nullable|string',
+
+            'variables.btn_tertiary_border_top_width' => 'nullable|numeric',
+            'variables.btn_tertiary_border_right_width' => 'nullable|numeric',
+            'variables.btn_tertiary_border_bottom_width' => 'nullable|numeric',
+            'variables.btn_tertiary_border_left_width' => 'nullable|numeric',
+
+            'variables.btn_tertiary_border_top_color' => 'nullable|string',
+            'variables.btn_tertiary_border_right_color' => 'nullable|string',
+            'variables.btn_tertiary_border_bottom_color' => 'nullable|string',
+            'variables.btn_tertiary_border_left_color' => 'nullable|string',
+
+
 
             // Buttons style
+            'variables.btn_adjust_borders'=>'boolean',
+
             'variables.btn_padding_y' => 'nullable|string',
             'variables.btn_padding_x' => 'nullable|string',
             'variables.btn_radius' => 'nullable|string',

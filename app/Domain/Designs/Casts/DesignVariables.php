@@ -1,7 +1,7 @@
 <?php
 
 namespace DDD\Domain\Designs\Casts;
-
+define('DEFAULT_BTN_BORDER_W', 2);
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 class DesignVariables implements CastsAttributes
@@ -18,7 +18,7 @@ class DesignVariables implements CastsAttributes
     public function get($model, string $key, $value, array $attributes)
     {
         $value = isset($value) ? json_decode($value, true) : [];
-
+        
         $defaults = [
             // Colors
             'color_white' => '#ffffff',
@@ -61,7 +61,43 @@ class DesignVariables implements CastsAttributes
             'btn_secondary_text_color' => null,
             'btn_tertiary_text_color' => null,
 
+            'btn_primary_bg_color' => null,
+            'btn_secondary_bg_color' => null,
+            'btn_tertiary_bg_color'=>null,
+
+            'btn_primary_border_top_width' => DEFAULT_BTN_BORDER_W,
+            'btn_primary_border_right_width' => DEFAULT_BTN_BORDER_W,
+            'btn_primary_border_bottom_width' => DEFAULT_BTN_BORDER_W,
+            'btn_primary_border_left_width' => DEFAULT_BTN_BORDER_W,
+
+            'btn_primary_border_top_color' => 'transparent',
+            'btn_primary_border_right_color' => 'transparent',
+            'btn_primary_border_bottom_color' => 'transparent',
+            'btn_primary_border_left_color' => 'transparent',
+
+            'btn_secondary_border_top_width' => DEFAULT_BTN_BORDER_W,
+            'btn_secondary_border_right_width' => DEFAULT_BTN_BORDER_W,
+            'btn_secondary_border_bottom_width' => DEFAULT_BTN_BORDER_W,
+            'btn_secondary_border_left_width' => DEFAULT_BTN_BORDER_W,
+
+            'btn_secondary_border_top_color' => 'transparent',
+            'btn_secondary_border_right_color' => 'transparent',
+            'btn_secondary_border_bottom_color' => 'transparent',
+            'btn_secondary_border_left_color' => 'transparent',
+
+            'btn_tertiary_border_top_width' => DEFAULT_BTN_BORDER_W,
+            'btn_tertiary_border_right_width' => DEFAULT_BTN_BORDER_W,
+            'btn_tertiary_border_bottom_width' => DEFAULT_BTN_BORDER_W,
+            'btn_tertiary_border_left_width' => DEFAULT_BTN_BORDER_W,
+
+            'btn_tertiary_border_top_color' => 'transparent',
+            'btn_tertiary_border_right_color' => 'transparent',
+            'btn_tertiary_border_bottom_color' => 'transparent',
+            'btn_tertiary_border_left_color' => 'transparent',
+
+
             // Buttons styles
+            'btn_adjust_borders' => false,
             'btn_padding_y' => '0.5',
             'btn_padding_x' => '0.75',
             'btn_radius' => '0.25',
