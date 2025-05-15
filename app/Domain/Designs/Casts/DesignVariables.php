@@ -25,6 +25,8 @@ class DesignVariables implements CastsAttributes
             'color_black' => '#404040',
             'color_primary' => '#404040',
             'color_accent' => '#16e09a',
+            'color_brand_alternate_1'=>null,
+            'color_brand_alternate_2'=>null,
             'color_contrast_high' => '#404040',
             'color_contrast_higher' => '#404040',
             'color_background' => '#ffffff',
@@ -102,6 +104,7 @@ class DesignVariables implements CastsAttributes
             'btn_padding_x' => '0.75',
             'btn_radius' => '0.25',
             'btn_text_transform' => 'none',
+            'btn_letter_spacing' => '0',
         ];
 
         return array_merge($defaults, $value);
