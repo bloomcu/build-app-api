@@ -17,8 +17,8 @@ class CrawlerApify implements CrawlerInterface
     public function crawlSite(string $url)
     {
         try {
-            // $response = Http::post('https://api.apify.com/v2/actor-tasks/' . $this->cheerioActor . '/runs?token=' . $this->token, [
-            $request = Http::post('https://api.apify.com/v2/acts/' . $this->cheerioActor . '/runs?token=' . $this->token, [
+            $request = Http::post('https://api.apify.com/v2/actor-tasks/' . $this->cheerioActor . '/runs?token=' . $this->token, [
+            // $request = Http::post('https://api.apify.com/v2/acts/' . $this->cheerioActor . '/runs?token=' . $this->token, [
                 'startUrls' => [['url' => $url . '/']],
                 'pseudoUrls' => [['purl' => $url . '/[.*?]']]
             ])->json();
@@ -31,7 +31,7 @@ class CrawlerApify implements CrawlerInterface
                 'results_id' => $response['defaultDatasetId'],
             ];
         } catch (\Exception $exception) {
-            abort(500, 'Could not start Apify crawler.');
+            abort(500, 'Could not start Apify crawler: ' . $exception->getMessage());
         }
     }
 
@@ -49,7 +49,7 @@ class CrawlerApify implements CrawlerInterface
             ];
         // } catch (RequestException $exception) {
         } catch (\Exception $exception) {
-            abort(500, 'Could not retrieve status from Apify crawler.');
+            abort(500, 'Could not retrieve status from Apify crawler: ' . $exception->getMessage());
         }
     }
 
@@ -61,17 +61,17 @@ class CrawlerApify implements CrawlerInterface
             // Only return results with a url
             $collection = collect($request);
             $filtered = $collection->filter(function ($item) {
-                return isset($item['url']);
+                return isset($item['destinationUrl']);
             });
 
             $mapped = $filtered->map(function ($item) {
                 return [
-                    'http_status'   => $item['#debug']['statusCode'] ?? null,
-                    'title'         => $item['title'] ?? null,
+                    'http_status'   => $item['statusCode'] ?? null,
+                    'title'         => $item['pageTitle'] ?? null,
                     'wordcount'     => $item['wordcount'] ?? null,
                     'redirected'    => $item['redirected'] ?? null,
-                    'requested_url' => $item['requested_url'] ?? null,
-                    'url'           => $item['url'] ?? null,
+                    'requested_url' => $item['sourceUrl'] ?? null,
+                    'url'           => $item['destinationUrl'] ?? null,
                     // 'destination_url' => $item['destination_url'],
                 ];
             });
@@ -79,7 +79,7 @@ class CrawlerApify implements CrawlerInterface
             return $mapped;
         // } catch (RequestException $exception) {
         } catch (\Exception $exception) {
-            abort(500, 'Could not get Apify crawl results.');
+            abort(500, 'Could not get Apify crawl results: ' . $exception->getMessage());
         }
     }
 
@@ -90,7 +90,7 @@ class CrawlerApify implements CrawlerInterface
             return $request;
         // } catch (RequestException $exception) {
         } catch (\Exception $exception) {
-            abort(500, 'Could not abort Apify crawler.');
+            abort(500, 'Could not abort Apify crawler: ' . $exception->getMessage());
         }
     }
 }
