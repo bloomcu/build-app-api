@@ -38,26 +38,36 @@ class DesignVariables implements CastsAttributes
 
             'h1_size' => 'xxl',
             'h1_color' => null,
+            'h1_color_bg_1' => null,
+            'h1_color_bg_2' => null,
             'h1_transform' => 'none',
             'h1_letter_spacing' => 0,
 
             'h2_size' => 'xl',
             'h2_color' => null,
+            'h2_color_bg_1' => null,
+            'h2_color_bg_2' => null,
             'h2_transform' => 'none',
             'h2_letter_spacing' => 0,
 
             'h3_size' => 'lg',
             'h3_color' => null,
+            'h3_color_bg_1' => null,
+            'h3_color_bg_2' => null,
             'h3_transform' => 'none',
             'h3_letter_spacing' => 0,
 
             'h4_size' => 'md',
             'h4_color' => null,
+            'h4_color_bg_1' => null,
+            'h4_color_bg_2' => null,
             'h4_transform' => 'none',
             'h4_letter_spacing' => 0,
 
             'h5_size' => 'normal',
             'h5_color' => null,
+            'h5_color_bg_1' => null,
+            'h5_color_bg_2' => null,
             'h5_transform' => 'none',
             'h5_letter_spacing' => 0,
 
