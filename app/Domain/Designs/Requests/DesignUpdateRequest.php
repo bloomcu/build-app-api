@@ -49,26 +49,36 @@ class DesignUpdateRequest extends FormRequest
 
             'variables.h1_size' => 'nullable|string',
             'variables.h1_color' => 'nullable|string',
+            'variables.h1_color_bg_1' => 'nullable|string',
+            'variables.h1_color_bg_2' => 'nullable|string',
             'variables.h1_transform' => 'nullable|string',
             'variables.h1_letter_spacing' => 'nullable|decimal:0,2',
 
             'variables.h2_size' => 'nullable|string',
             'variables.h2_color' => 'nullable|string',
+            'variables.h2_color_bg_1' => 'nullable|string',
+            'variables.h2_color_bg_2' => 'nullable|string',
             'variables.h2_transform' => 'nullable|string',
             'variables.h2_letter_spacing' => 'nullable|decimal:0,2',
 
             'variables.h3_size' => 'nullable|string',
             'variables.h3_color' => 'nullable|string',
+            'variables.h3_color_bg_1' => 'nullable|string',
+            'variables.h3_color_bg_2' => 'nullable|string',
             'variables.h3_transform' => 'nullable|string',
             'variables.h3_letter_spacing' => 'nullable|decimal:0,2',
 
             'variables.h4_size' => 'nullable|string',
             'variables.h4_color' => 'nullable|string',
+            'variables.h4_color_bg_1' => 'nullable|string',
+            'variables.h4_color_bg_2' => 'nullable|string',
             'variables.h4_transform' => 'nullable|string',
             'variables.h4_letter_spacing' => 'nullable|decimal:0,2',
 
             'variables.h5_size' => 'nullable|string',
             'variables.h5_color' => 'nullable|string',
+            'variables.h5_color_bg_1' => 'nullable|string',
+            'variables.h5_color_bg_2' => 'nullable|string',
             'variables.h5_transform' => 'nullable|string',
             'variables.h5_letter_spacing' => 'nullable|decimal:0,2',
 
