@@ -25,6 +25,7 @@ class DesignUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $btn_animation_option_rules = 'nullable|in:default,slide-up,slide-down,slide-left,slide-right';
         return [
             'designer_name' => 'nullable|string',
             'designer_email' => 'nullable|email',
@@ -130,6 +131,8 @@ class DesignUpdateRequest extends FormRequest
             'variables.btn_primary_border_left_color' => 'nullable|string',
             'variables.btn_primary_hover_border_left_color' => 'nullable|string',
 
+            'variables.btn_primary_hover_style' => $btn_animation_option_rules,
+
 
             // Secondary buttons
             'variables.btn_secondary_text_color' => 'nullable|string',
@@ -156,6 +159,8 @@ class DesignUpdateRequest extends FormRequest
             'variables.btn_secondary_border_left_color' => 'nullable|string',
             'variables.btn_secondary_hover_border_left_color' => 'nullable|string',
 
+            'variables.btn_secondary_hover_style' => $btn_animation_option_rules,
+
             'variables.btn_tertiary_text_color' => 'nullable|string',
             'variables.btn_tertiary_hover_text_color' => 'nullable|string',
             'variables.btn_tertiary_bg_color' => 'nullable|string',
@@ -178,7 +183,7 @@ class DesignUpdateRequest extends FormRequest
             'variables.btn_tertiary_hover_border_bottom_color' => 'nullable|string',
             'variables.btn_tertiary_border_left_color' => 'nullable|string',
             'variables.btn_tertiary_hover_border_left_color' => 'nullable|string',
-
+            'variables.btn_tertiary_hover_style' => $btn_animation_option_rules,
 
 
             // Buttons style

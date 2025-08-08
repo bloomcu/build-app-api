@@ -113,6 +113,8 @@ class DesignVariables implements CastsAttributes
             'btn_primary_border_left_width' => DEFAULT_BTN_BORDER_W,
             'btn_primary_hover_border_left_width' => DEFAULT_BTN_BORDER_W,
 
+            'btn_primary_hover_style' => 'default',
+
             'btn_primary_border_top_color' => 'transparent',
             'btn_primary_hover_border_top_color' => 'transparent',
             'btn_primary_border_right_color' => 'transparent',
@@ -145,6 +147,7 @@ class DesignVariables implements CastsAttributes
             'btn_secondary_hover_border_bottom_color' => 'transparent',
             'btn_secondary_border_left_color' => 'transparent',
             'btn_secondary_hover_border_left_color' => 'transparent',
+            'btn_secondary_hover_style' => 'default',
 
             // Tertiary buttons
             'btn_tertiary_text_color' => null,
@@ -169,7 +172,8 @@ class DesignVariables implements CastsAttributes
             'btn_tertiary_hover_border_bottom_color' => 'transparent',
             'btn_tertiary_border_left_color' => 'transparent',
             'btn_tertiary_hover_border_left_color' => 'transparent',
-
+            
+            'btn_tertiary_hover_style' => 'default',
 
             // Buttons styles
             'btn_adjust_borders' => false,
