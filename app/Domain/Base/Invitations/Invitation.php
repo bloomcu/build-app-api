@@ -42,6 +42,6 @@ class Invitation extends Model
      */
     public function url()
     {
-        return urldecode(env('APP_UI_URL').'/'.$this->organization->slug.'/invitations/'.$this->uuid);
+        return urldecode(config('app.ui_url').'/'.$this->organization->slug.'/invitations/'.$this->uuid);
     }
 }
